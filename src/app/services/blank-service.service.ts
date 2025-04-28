@@ -4,39 +4,24 @@ import { type NoteInterface } from '../model/note-interface';
 @Injectable({
   providedIn: 'root'
 })
-
-
-export class BlankServiceService  {
-  
+export class BlankServiceService {
   private readonly STORAGE_KEY = 'notes';
 
-  constructor() { }
   getAllNotes(): NoteInterface[] {
     const notesJson = localStorage.getItem(this.STORAGE_KEY);
     return notesJson ? JSON.parse(notesJson) : [];
   }
 
   saveNote(note: NoteInterface): void {
-    // Recupera tutte le note esistenti
-    const existingNotes = this.getAllNotes();
+    const notes = this.getAllNotes();
+    const index = notes.findIndex(n => n.id === note.id);
     
-    // Controlla se la nota esiste già (per aggiornamento)
-    const existingNoteIndex = existingNotes.findIndex(n => n.id === note.id);
-    
-    // Aggiorna last_edit
-    note.last_edit = Date.now();
-    
-    if (existingNoteIndex >= 0) {
-      // Sostituisce la nota esistente
-      existingNotes[existingNoteIndex] = note;
+    if (index >= 0) {
+      notes[index] = note;
     } else {
-      // Aggiunge la nuova nota
-      existingNotes.push(note);
+      notes.unshift(note); // Aggiungi nuove note in cima
     }
     
-    // Salva l'array aggiornato nel localStorage
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(existingNotes));
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(notes));
   }
-
- 
 }

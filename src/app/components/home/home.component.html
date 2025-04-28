@@ -1,23 +1,35 @@
-
-
-
-<mat-drawer-container class="container" autosize>
-    <mat-drawer [opened]="isSidebarOpen()" #drawer class="sidenav" mode="side">
-      <p>Note Salvate</p>
-    </mat-drawer>
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="isSidebarOpen" (openedChange)="isSidebarOpenChange.emit($event)" mode="side">
+      <div class="sidebar-header">
+        <h3>Le tue note</h3>
+        <button mat-icon-button (click)="createNewNote()" title="Nuova nota">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      
+      <mat-nav-list>
+        <mat-list-item class="list_item"
+          *ngFor="let note of notes" 
+          (click)="selectNote(note)"
+          [class.active]="currentNote?.id === note.id">
+          <span matListItemTitle>{{ note.title || 'Senza titolo' }}</span>
+          <span matListItemLine>{{ note.last_edit | date:'short' }}</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
   
-    <div class="sidenav-content">
+    <mat-sidenav-content>
+      
+      <div *ngIf="currentNote">
         <div 
-        #editableDiv
-        contenteditable="true" 
+        #editableDiv  
+        contenteditable="true"
         class="editable-div"
-        aria-label="Area di testo editabile"
-        (input)="onContentChange($event)"
-        (blur)="saveNote()" 
-         >
-         {{ currentNote.content }} <!-- Solo caricamento iniziale -->
+        (blur)="saveCurrentNote()">
+        {{ currentNote.content }}  
+      </div>
         </div>
-    </div>
-  </mat-drawer-container>
-
+      
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 

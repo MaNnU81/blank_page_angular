@@ -8,6 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -24,4 +25,5 @@ export class HeaderComponent {
     emitSidenavClick() {
       this.sidenavBtnClicked.emit()
 }
+
 }
