@@ -1,0 +1,39 @@
+.container {
+    width: 100%;
+    height: calc(100vh - 64px);
+    
+  }
+  
+  .sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    
+    
+  }
+  
+  .sidenav {
+    padding: 20px;
+    background-color: rgba(247, 11, 11, 0.089);
+  }
+
+ 
+
+  .editable-div{
+    background-color: rgba(247, 11, 11, 0.089);
+   width: 600px;
+    height: 600px;
+    align-items: center;
+    border: rgba(255, 0, 0, 0.247) 2px solid;
+    border-radius: 16px;
+    padding: 16px;
+
+   
+}
+
+.editable-div:focus {
+    outline: none;
+    border: red 2px solid;
+    
+  }

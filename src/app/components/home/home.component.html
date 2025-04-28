@@ -1,0 +1,23 @@
+
+
+
+<mat-drawer-container class="container" autosize>
+    <mat-drawer [opened]="isSidebarOpen()" #drawer class="sidenav" mode="side">
+      <p>Note Salvate</p>
+    </mat-drawer>
+  
+    <div class="sidenav-content">
+        <div 
+        #editableDiv
+        contenteditable="true" 
+        class="editable-div"
+        aria-label="Area di testo editabile"
+        (input)="onContentChange($event)"
+        (blur)="saveNote()" 
+         >
+         {{ currentNote.content }} <!-- Solo caricamento iniziale -->
+        </div>
+    </div>
+  </mat-drawer-container>
+
+
