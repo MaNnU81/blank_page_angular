@@ -11,9 +11,9 @@
         <mat-list-item class="list_item"
           *ngFor="let note of notes" 
           (click)="selectNote(note)"
-          [class.active]="currentNote?.id === note.id">
+          [class.active]="currentNote.id === note.id">
           <span matListItemTitle>{{ note.title || 'Senza titolo' }}</span>
-          <span matListItemLine>{{ note.last_edit | date:'short' }}</span>
+          <span matListItemLine>{{ note.creation_date  | date:'short' }}</span>  
         </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>

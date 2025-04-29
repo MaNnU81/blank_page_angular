@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit, AfterViewInit  {
     id: '',
     title: 'Nuova nota',
     content: '',
-    creation_date: 0
+    creation_date: 0,
+    last_edit: 0
   };
 
   constructor(private blankService: BlankServiceService) {}
@@ -59,7 +60,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
       id: this.generateId(),
       title: 'Nuova nota',
       content: '',
-      creation_date: Date.now()
+      creation_date: Date.now(),
     };
     this.notes.unshift(newNote); // Aggiungi in cima alla lista
     this.selectNote(newNote);
